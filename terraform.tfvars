@@ -1,10 +1,10 @@
 avinash {
 rg1 = {
-    name_rg = "abhi1rg"
+    rg_name = "abhi1rg"
     location = "westus"
 }
 rg2 = {
-    name_rg = "abhi1rg002"
+    rg_name = "abhi1rg002"
     location = "eastus"
 }
 
