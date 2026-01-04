@@ -1,4 +1,4 @@
-avinash {
+avinash = {
 rg1 = {
     rg_name = "abhi1rg"
     location = "westus"
