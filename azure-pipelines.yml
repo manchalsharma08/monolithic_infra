@@ -28,7 +28,7 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'plan'
-        environmentServiceNameAzureRM: 'ApplicationSC'
+        environmentServiceNameAzureRM: 'MyServiceConnection01'
         environmentAzureRmOverrideSubscriptionID: '0e01e4d0-ef71-4105-81fd-346e52ee7351'
     - task: TerraformTask@5
       inputs:
