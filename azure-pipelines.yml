@@ -12,7 +12,7 @@ variables:
   backendCON: 'myrgccon'
   backendKEY: 'dev.terraform.tfstate'
   SubscriptionID: '89ce96dc-8535-4140-a60a-4ddca5655e3a'
-  tfWorkingDir: '$(System.DefaultWorkingDirectory)/terraform'
+  tfWorkingDir: '$(System.DefaultWorkingDirectory)'
 
 stages:
 - stage: Terraform
