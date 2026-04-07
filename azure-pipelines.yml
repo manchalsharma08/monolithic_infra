@@ -3,7 +3,7 @@ trigger:
     include:
       - main
 
-pool: Default
+pool: default
 
 variables:
   ServiceConnection: 'MyServiceConnection01'
@@ -11,18 +11,16 @@ variables:
   backendST: 'myrgst5679807578jhj'
   backendCON: 'myrgccon'
   backendKEY: 'dev.terraform.tfstate'
-  SubscriptionID: '0e01e4d0-ef71-4105-81fd-346e52ee7351'
-  tfWorkingDir: '$(System.DefaultWorkingDirectory)'
+  SubscriptionID: '89ce96dc-8535-4140-a60a-4ddca5655e3a'
+  tfWorkingDir: '$(System.DefaultWorkingDirectory)/terraform'
 
 stages:
 - stage: Terraform
   jobs:
   - job: TerraformJob
-    displayName: Terraform Installation & Deployment
     steps:
 
     - task: TerraformInstaller@1
-      displayName: Install Terraform
       inputs:
         terraformVersion: 'latest'
 
@@ -40,11 +38,19 @@ stages:
         backendAzureRmKey: $(backendKEY)
 
     - task: TerraformTask@5
+      displayName: Terraform Validate
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
+        workingDirectory: $(tfWorkingDir)
+
+    - task: TerraformTask@5
       displayName: Terraform Plan
       inputs:
         provider: 'azurerm'
         command: 'plan'
         workingDirectory: $(tfWorkingDir)
+        commandOptions: '-out=tfplan'
         environmentServiceNameAzureRM: $(ServiceConnection)
         environmentAzureRmOverrideSubscriptionID: $(SubscriptionID)
 
@@ -54,6 +60,6 @@ stages:
         provider: 'azurerm'
         command: 'apply'
         workingDirectory: $(tfWorkingDir)
-        commandOptions: '--auto-approve'
+        commandOptions: 'tfplan --auto-approve'
         environmentServiceNameAzureRM: $(ServiceConnection)
         environmentAzureRmOverrideSubscriptionID: $(SubscriptionID)
