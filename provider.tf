@@ -16,6 +16,6 @@ use_azuread_auth     = true
 
 provider "azurerm" {
 features {}
-subscription_id = "0e01e4d0-ef71-4105-81fd-346e52ee7351"
+subscription_id = "89ce96dc-8535-4140-a60a-4ddca5655e3a"
   
 }
